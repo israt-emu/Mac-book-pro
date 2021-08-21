@@ -71,6 +71,7 @@ applyBtn.addEventListener('click', function(){
         grandTotal =grandTotal - (grandTotal * 0.2);
         errorMessage.classList.add('d-none');
         successMessage.classList.remove('d-none');
+        applyBtn.setAttribute('disabled', true);
     }
     else{
         errorMessage.classList.remove('d-none');
