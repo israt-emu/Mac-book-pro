@@ -9,6 +9,7 @@ const deliveryButton1 = document.getElementById('free-delivery');
 const deliveryButton2 = document.getElementById('premium-delivery');
 const applyBtn = document.getElementById('apply-btn');
 const finalTotal = document.getElementById('final-total');
+const totalField = document.getElementById('total');
 
 //update cost function
  function updateCost(extraFeature, costValue){
@@ -30,13 +31,12 @@ function updateTotal(){
     const memoryCost = getCostValue('memory');
     const storageCost = getCostValue('storage');
     const deliveryCost = getCostValue('delivery');
-    const totalField = document.getElementById('total');
     const totalCost = bestPrice + memoryCost + storageCost + deliveryCost;
     totalField.innerText = totalCost;
     finalTotal.innerText = totalCost;
 }
 
-//update extra cost 
+//update extra cost by click
 
 memoryButton1.addEventListener('click', function(){
     updateCost('memory', 0);
@@ -46,38 +46,29 @@ memoryButton2.addEventListener('click', function(){
 });
 storageButton1.addEventListener('click', function(){
     updateCost('storage', 0);
-})
+});
 storageButton2.addEventListener('click', function(){
     updateCost('storage', 100);
-})
+});
 storageButton3.addEventListener('click', function(){
     updateCost('storage', 180);
-})
+});
 deliveryButton1.addEventListener('click', function(){
     updateCost('delivery', 0);
-})
+});
 deliveryButton2.addEventListener('click', function(){
     updateCost('delivery', 20);
-})
+});
 
 //apply promo code
 applyBtn.addEventListener('click', function(){
     const promoInput = document.getElementById('promo-input');
     const promoCode = promoInput.value;
-    let grandTotal = parseFloat(finalTotal.innerText);
-    const errorMessage = document.getElementById('error');
-    const successMessage = document.getElementById('success');
+    let total = parseFloat(totalField.innerText);
     if(promoCode == 'stevekaku'){
-        grandTotal =grandTotal - (grandTotal * 0.2);
-        errorMessage.classList.add('d-none');
-        successMessage.classList.remove('d-none');
-        applyBtn.setAttribute('disabled', true);
+        total = total - (total * 0.2);
     }
-    else{
-        errorMessage.classList.remove('d-none');
-        successMessage.classList.add('d-none');
-    }
-    finalTotal.innerText = grandTotal;
+    finalTotal.innerText = total;
     promoInput.value = '';
-})
+});
 
