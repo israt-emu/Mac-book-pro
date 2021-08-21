@@ -65,8 +65,13 @@ applyBtn.addEventListener('click', function(){
     const promoInput = document.getElementById('promo-input');
     const promoCode = promoInput.value;
     let total = parseFloat(totalField.innerText);
+    const errorMessage = document.getElementById('error');
     if(promoCode == 'stevekaku'){
         total = total - (total * 0.2);
+        errorMessage.classList.add('d-none');
+    }
+    else{
+        errorMessage.classList.remove('d-none');
     }
     finalTotal.innerText = total;
     promoInput.value = '';
